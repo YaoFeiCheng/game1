@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url("img/BackGround.jpg");
+            background-size: revert;
+        }
+        #wrapper{
+            display: none;
+            width: 800px;
+            height: 800px;
+            border-radius: 5%;
+            position: relative;
+            background: rgba(0,0,0,0.3);
+        }
+        .disable{
+            pointer-events: none;
+        }
+        #disable{
+            pointer-events: none;
+        }
+        .line{
+            width: 800px;
+            height: 25%;
+            position: absolute;
+        }
+        .pokerBG{
+            display:inline-block;
+            width: 150px;
+            height:180px;
+            top: 10px;
+            border-radius: 10%;
+            position: absolute;
+        }
+        .pokerBG:hover{
+            cursor: pointer;
+        }
+        .pokerBG img{
+            display: block;
+            position: absolute;
+            width: 150px;
+            height:180px;
+            border-radius: 10%;
+            box-shadow: 3px 3px 3px black;
+        }
+        button{
+            width: 100px;
+            height: 50px;
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 1px 1px 1px white;
+            margin-top: 30px;
+            border-radius: 20%;
+            background-color: yellow;
+        }
+        button:hover{
+            cursor: pointer;
+            color: red;
+        }
+        dialog{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        span{
+            display: block;
+            color: red;
+            font-size: 100px;
+            font-family: 华文行楷;
+            margin-left:700px;
+            margin-top: 100px;
+            text-shadow: 3px 3px 3px white;
+            animation: end 2s;
+        }
+        #startBg{
+            background-image: url("img/start.jpg");
+            background-size: cover;
+        }
+        #startBg div{
+            font-size: 100px;
+            font-family: 华文行楷;
+            color: white;
+            margin-top: 800px;
+            margin-left: 750px;
+        }
+        #startBg div:hover{
+            cursor: pointer;
+            color: yellow;
+            font-size: 110px;
+        }
+        #end{
+            width: 50%;
+            height: 50%;
+            display: block;
+            margin-left:520px;
+            margin-top: 50px;
+            box-shadow:3px 3px 3px black ;
+            animation: end 2s;
+        }
+        #rePlay{
+            margin-left: 900px;
+            animation: end 2s;
+        }
+        @keyframes rotateBg {
+            0%{transform: rotateY(0deg) rotateX(0deg) scale(1)}
+            50%{transform: rotateY(90deg) rotateX(180deg) scale(0.7)}
+            100%{transform: rotateY(90deg) rotateX(360deg) scale(1)}
+        }
+        @keyframes rotate {
+            0%{transform: rotateY(180deg) rotateX(360deg) scale(1)}
+            50%{transform: rotateY(270deg) rotateX(180deg) scale(0.7)}
+            100%{transform: rotateY(360deg) rotateX(0deg) scale(1)}
+        }
+
+        @keyframes reRotateBg {
+            0%{transform: rotateY(90deg) rotateX(0deg) scale(1)}
+            50%{transform: rotateY(90deg) rotateX(180deg) scale(0.7)}
+            100%{transform: rotateY(0deg) rotateX(360deg) scale(1)}
+        }
+        @keyframes reRotate {
+            0%{transform: rotateY(360deg) rotateX(360deg) scale(1)}
+            50%{transform: rotateY(270deg) rotateX(180deg) scale(0.7)}
+            100%{transform: rotateY(180deg) rotateX(0deg) scale(1)}
+        }
+        @keyframes del {
+            0%{transform: rotateZ(0deg) scale(1);opacity: 1}
+            100%{transform: rotateZ(1080deg) scale(0);opacity: 0}
+        }
+        @keyframes start {
+            0%{transform: rotateX(0deg) scale(1);opacity: 1;border-radius: 0}
+            100%{transform: rotateX(1080deg) scale(0);opacity: 0;border-radius: 100%}
+        }
+        @keyframes end {
+            0%{transform: rotateZ(0deg) scale(0);opacity: 0}
+            100%{transform: rotateZ(1080deg) scale(1);opacity: 1}
+        }
+    </style>
+</head>
+<body>
+<div id="score" style="color: red;font-size: 50px">score:</div>
+<div id="wrapper">
+    <div class="line">
+        <div class="pokerBG" onclick="rotatePoker(0)">
+            <img src="img/1.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(1)">
+            <img src="img/2.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(2)">
+            <img src="img/3.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(3)">
+            <img src="img/4.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+    </div>
+    <div class="line">
+        <div class="pokerBG" onclick="rotatePoker(4)">
+            <img src="img/5.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(5)">
+            <img src="img/6.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(6)">
+            <img src="img/7.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(7)">
+            <img src="img/8.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+    </div>
+    <div class="line">
+        <div class="pokerBG" onclick="rotatePoker(8)">
+            <img src="img/1.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(9)">
+            <img src="img/2.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(10)">
+            <img src="img/3.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(11)">
+            <img src="img/4.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+    </div>
+    <div class="line">
+        <div class="pokerBG" onclick="rotatePoker(12)">
+            <img src="img/5.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(13)">
+            <img src="img/6.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(14)">
+            <img src="img/7.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+        <div class="pokerBG" onclick="rotatePoker(15)">
+            <img src="img/8.jpg" alt="" >
+            <img src="img/bg.jpg" alt="" >
+        </div>
+    </div>
+</div>
+
+<button onclick="changePosition()">洗牌</button>
+<dialog id="startBg" open>
+    <div onclick="gameStart()">开始游戏</div>
+</dialog>
+<dialog>
+    <span>绝对的正义！</span>
+    <img id="end" src="img/end.jpg" alt="">
+    <button id="rePlay" onclick="reStart()">再玩一次</button>
+</dialog>
+
+<script>
+    var divs = document.getElementsByClassName('pokerBG');
+    var lines = document.getElementsByClassName('line');
+    var wrapper  = document.getElementById('wrapper');
+    var dialogs = document.getElementsByTagName('dialog');
+    var score = document.getElementById('score');
+    var timer = null;
+    var t = null;
+    var end = 0;
+    var flag = 0;
+    var first;
+    var second;
+    var arr = [];
+    /*把图片写入数组*/
+    for(var k=0;k<16;k++){
+        var imgs = divs[k].getElementsByTagName('img');
+        arr[k]=imgs[0].src;
+    }
+    /*横向排列*/
+    for(var i=0;i<divs.length;i++){
+        if(i<=3){
+            divs[i].style.left = 200*i + 25 + 'px';
+            divs[i].style.top = 10+'px';
+        }
+        if(i>3 && i<=7){
+            divs[i].style.left = 200*(i-4) + 25 + 'px';
+            divs[i].style.top = 10+'px';
+        }
+        if(i>7 && i<=11){
+            divs[i].style.left = 200*(i-8) + 25 + 'px';
+            divs[i].style.top = 10+'px';
+        }
+        if(i>11 && i<=15){
+            divs[i].style.left = 200*(i-12) + 25 + 'px';
+            divs[i].style.top = 10+'px';
+        }
+    }
+    /*纵向排列*/
+    for(var j=0;j<4;j++){
+        lines[j].style.top = 200 * j + 'px';
+    }
+    /*翻转*/
+    function rotatePoker(temp) {
+        clearTimeout(t);
+        var img = divs[temp].getElementsByTagName('img');
+        if(flag == 0) {
+            first = temp;
+            img[0].style.animation = 'rotate 1s forwards ';
+            img[1].style.animation = 'rotateBg 1s forwards';
+            divs[temp].id = 'disable';
+            flag = 1;
+        }else{
+            second = temp;
+            img[0].style.animation = 'rotate 1s forwards';
+            img[1].style.animation = 'rotateBg 1s forwards';
+            wrapper.className = 'disable';
+            timer = setTimeout(compare,1000);
+        }
+    }
+
+
+    /*比较*/
+    function compare() {
+        clearTimeout(timer);
+            if(arr[first] == arr[second]){
+                flag = 0;
+                end++ ;
+                score.innerHTML = 'score:'+ end;
+                divs[first].id = '';
+                wrapper.className = '';
+                divs[first].style.animation = 'del 1s forwards';
+                divs[second].style.animation = 'del 1s forwards';
+            }else{
+                flag = 0;
+                divs[first].id = '';
+                wrapper.className = '';
+                var img1 = divs[first].getElementsByTagName('img');
+                var img2 = divs[second].getElementsByTagName('img');
+                img1[0].style.animation = 'reRotate 1s forwards';
+                img1[1].style.animation = 'reRotateBg 1s forwards';
+                img2[0].style.animation = 'reRotate 1s forwards';
+                img2[1].style.animation = 'reRotateBg 1s forwards';
+            }
+        if(end == 8){
+            dialogs[1].open = true;
+        }
+    }
+
+    /*洗牌*/
+    function changePosition() {
+        var a1 = [0,1,2,3];
+        var a2 = [0,1,2,3];
+        var a3 = [0,1,2,3];
+        var a4 = [0,1,2,3];
+        var a5 = [0,1,2,3];
+        a1.shuffle();
+        a2.shuffle();
+        a3.shuffle();
+        a4.shuffle();
+        a5.shuffle();
+        for(var i=0;i<16;i++){
+            if(i<=3){
+                var t1 = a1[i];
+                divs[i].style.left = 200*t1 + 25 + 'px';
+                divs[i].style.transition = 'all 2s';
+            }
+            if(i>3 && i<=7){
+                var t2 = a2[i-4];
+                divs[i].style.left = 200*t2 + 25 + 'px';
+                divs[i].style.transition = 'all 2s';
+            }
+            if(i>7 && i<=11){
+                var t3 = a3[i-8];
+                divs[i].style.left = 200*t3 + 25 + 'px';
+                divs[i].style.transition = 'all 2s';
+            }
+            if(i>11 && i<=15){
+                var t4 = a4[i-12];
+                divs[i].style.left = 200*t4 + 25 + 'px';
+                divs[i].style.transition = 'all 2s';
+            }
+        }
+        for(var j=0;j<4;j++){
+            var t5 = a5[j];
+            lines[j].style.top = 200 * t5 +'px';
+            lines[j].style.transition = 'all 2s';
+        }
+    }
+    Array.prototype.shuffle = function () {
+        var _this = this;
+        for (var i=_this.length-1;i>=0;i--){
+            var p1 = Math.floor(Math.random()*(i+1));
+            var p2 = _this[p1];
+
+            _this[p1] = _this[i];
+            _this[i] = p2;
+        }
+        return _this
+    };
+    /*开始游戏*/
+    function gameStart() {
+        dialogs[0].style.animation = 'start 2s forwards';
+        wrapper.style.display = 'block';
+        wrapper.className = 'disable'
+        changePosition()
+        for(var i=0;i<16;i++){
+            var img = divs[i].getElementsByTagName('img');
+            img[0].style.animation = 'rotate 1s forwards ';
+            img[1].style.animation = 'rotateBg 1s forwards';
+        }
+         t = setTimeout(function () {
+            for(var i=0;i<16;i++){
+                var img = divs[i].getElementsByTagName('img');
+                img[0].style.animation = 'reRotate 1s forwards ';
+                img[1].style.animation = 'reRotateBg 1s forwards';
+            }
+             wrapper.className = ''
+        },4000)
+    }
+    /*结束*/
+    function reStart() {
+        location.reload();
+    }
+</script>
+</body>
+</html>
